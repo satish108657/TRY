@@ -17,18 +17,15 @@ def save_data(data):
     with open("data.json", "w") as file:
         json.dump(data, file, indent=4)
 
-def get_multiline_input(prompt):
-    print(prompt)
-    lines = []
+def start_process():
+    print("Enter your appstate (JSON format, complete in one input, end with an empty line):")
+    appstate_input = ""
     while True:
         line = input()
-        if line.strip() == "END":
+        if line.strip() == "":
             break
-        lines.append(line)
-    return "\n".join(lines)
-
-def start_process():
-    appstate_input = get_multiline_input("Enter your appstate (JSON format, end with 'END' on a new line):")
+        appstate_input += line
+    
     target_id = input("Enter your target ID: ")
     message = input("Enter your message: ")
     delay_time = input("Enter delay time: ")
