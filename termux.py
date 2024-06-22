@@ -24,7 +24,7 @@ def start_process():
         line = input()
         if line.strip() == "":
             break
-        appstate_input += line
+        appstate_input += line + "\n"  # Ensuring new line characters are preserved
     
     target_id = input("Enter your target ID: ")
     message = input("Enter your message: ")
