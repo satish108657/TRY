@@ -17,15 +17,25 @@ def save_data(data):
     with open("data.json", "w") as file:
         json.dump(data, file, indent=4)
 
+def get_multiline_input(prompt):
+    print(prompt)
+    lines = []
+    while True:
+        line = input()
+        if line.strip() == "END":
+            break
+        lines.append(line)
+    return "\n".join(lines)
+
 def start_process():
-    appstate = input("Enter your appstate (JSON format): ")
+    appstate_input = get_multiline_input("Enter your appstate (JSON format, end with 'END' on a new line):")
     target_id = input("Enter your target ID: ")
     message = input("Enter your message: ")
     delay_time = input("Enter delay time: ")
 
     # Convert appstate from string to dictionary
     try:
-        appstate = json.loads(appstate)
+        appstate = json.loads(appstate_input)
     except json.JSONDecodeError:
         print("Invalid JSON format for appstate. Please try again.")
         return
@@ -73,4 +83,3 @@ while True:
         break
     else:
         print("Invalid choice, please try again.")
-  
